@@ -8,72 +8,67 @@ Para visualizar o meu projeto, <a href="https://github.com/GeorgeEnriqueBravo/DE
 </a>
 para baixa-lo. <br>
 
-Após o download, descompacte o arquivo baixado e abra em seu navegador o site `https://app.diagrams.net/` e escolha a opção de "Abrir diagrama existente". Depois selecione o arquivo "ExerciciosM02S06" localizado dentro da pasta com o mesmo nome que foi descompactada no arquivo baixado.
+Após o download, descompacte o arquivo baixado e abra em seu navegador o site `https://app.diagrams.net/` e escolha a opção de "Abrir diagrama existente". Depois selecione o arquivo "ExerciciosM02S06.drawio" localizado dentro da pasta "ExerciciosM02S06" que foi descompactada no arquivo baixado.
   
 ---
 
 # Lista de exercícios <img width="75px" alt="Philips" src="ExerciciosM02S06/images/lista.png"/>
-### [M2S04] Ex 1 - Herança e Polimorfismo
+### [M2S06] Ex 1 - Gerenciamento Loja
 
-a) Crie a interface **"Operavel"**, com os métodos:
+Vamos criar um sistema para o gerenciamento de uma Loja, cada exercício a seguir é parte do desenvolvimento do modelo conceitual desse sistema.
 
-- depositar(double valor)
-- sacar(double valor)
+A loja deve ter vários produtos, cada produto tem um código que deve identificar o produto. Todos os produtos devem ter preço. O produto também deve possibilitar a entrada de um nome para o produto.
 
-b) Crie a classe Abstrata **Conta** com o atributo "saldo" (double) e um método protegido (protected)
+### [M2S06] Ex 2 - Funcionarios
 
-- obterSaldoAtual()
+O sistema também deve ter uma forma de guardar os funcionários, esses devem ter o nome, um identificador, salário base, e o CPF desse funcionário.
 
-c) Crie uma classe **"ContaCorrente"** que implemente a interface Operavel e herde da classe Conta. Faça uma implementação dos métodos herdados.
+Lembrando que o campo salário deve ser numérico com 8 casas de unidade e 2 casas decimais.
 
-### [M2S04] Ex 2 - Sobrescrita
+### [M2S06] Ex 3 - Clientes Fidelizados
 
-a) Crie uma classe '**Funcionario**' com o método público "obterCargo" que retorne uma String com o texto "Sou Funcionário". <br>
-b) Crie uma classe **Gerente** que herde de Funcionário, sobrescrevendo o método de obter cargo com o texto "Sou Gerente". <br>
-c) Transforme a classe Gerente numa classe que não pode mais ser extendida (ou seja, que não pode ter subclasses). <br>
+Devemos guardar os clientes fidelizados, esses também devem ter um nome, um identificador, data de nascimento, tempo de fidelização, bônus de fidelidade.
 
-### [M2S04] Ex 3 - Interfaces
+Ele também deve ter o nível de fidelidade:
 
-a) Crie uma Interface chamada "**Tributavel**", que tenha o método "calcularValorComImposto". <br>
-b) Crie uma classe chamada "**Produto**" que implemente esta interface criada anteriormente. <br>
-Nesta classe crie os atributos "valor" e "valor imposto", ambos do tipo double. <br>
-No método herdado, retorne a soma dos atributos de valores.
+- Normal
+- Gold
+- Platinum
+- Black
+- Infinity
 
-### [M2S04] Ex 4 - Exceções
+Essa fidelidade deve ser uma entidade separada com um id e o nome da fidelidade.
 
-Escreva um código que pergunte ao usuário (pela linha de comando) sua idade.
+### [M2S06] Ex 4 - Relacionamentos
 
-Caso seja informado um valor negativo, zero ou maior que cem, lance uma exceção que seja capturada por um bloco de try-catch e imprima no console uma mensagem explicativa para o usuário, e a seguir repita a pergunta para o usuário até que seja informado um valor de idade válido.
+Vamos adicionar uma chave estrangeira de vendendor em produto. Nesse relacionamento devemos ter uma classes de Venda, que irá receber o id do produto e do vendedor e a quantidade de produtos vendidos.
 
-Neste exercício é livre para se criar uma exceção própria ou usar alguma exceção já existente na linguagem.
+### [M2S06] Ex 5 - Endereço Cliente
 
-Quando for informado uma idade válida, imprima no console a frase: "Olá, você tem xx anos de idade!"
+Vamos adicionar mais detalhes ao cliente fidelizado, adicione as informações de endereço a entidade de Cliente Fidelizado. Devemos ter a informação do logradouro do cliente, numero, estado e cidade.
 
-### [M2S04] Ex 5 - Visibilidade protected
+### [M2S06] Ex 6 - Normalização Cliente
 
-a) Crie uma classe “**Pessoa**“ com os atributos protected “nome” e “sobrenome”. Adicione nesta classe também um método protected “obterNomeCompleto()” que retorna uma String com nome e sobrenome da pessoa concatenados.
+Realizar a normalização na classe de Cliente. - Devemos ter uma entidade Endereço após a normalização.
 
-b) Crie uma outra classe “**Aluno**” que herde de “Pessoa”, onde tenha o atributo privado “matrícula” do tipo String e um método “registrar()”. Esse método “registrar()” deve retornar uma String contendo a frase: “Sou o <nome + sobrenome> e minha matrícula é <matrícula>”. Use os métodos e/ou atributos da superclasse para implementar este método “registrar()”.
+### [M2S06] Ex 7 - Gerente
 
-### [M2S04] Ex 6 - Exceções
+Crie agora uma entidade Loja e uma Entidade Gerente
 
-Crie uma classe de Teste, e nela crie um método “validar” que recebe como argumentos um parâmetro valorCampo do tipo String, e outro parâmetro do tipo tamanhoMaximo do tipo Inteiro.
+- A Loja deve receber um gerente e agora os funcionários vão ter a FK da Loja.
+- O Gerente deve herdar do Funcionário e deve ter um valor de bonus como atributo, esse bonus é por vendas realizadas no mês, por exemplo: 1000.
 
-A assinatura do método deve ser desta forma:
+### [M2S06] Ex 8 - Defina as Formas Normais
 
-```
-public void validar(String valorCampo, Integer valorMaximoCampo)
-```
+Defina as primeiras 3 formas de normalização, com exemplos.
 
-Na sequência, crie uma exceção customizada (própria) chamada “TamanhoInvalidoException”. Esta exceção deve ser ‘checked’, ou seja, extender a classe ‘Exception’.
+### [[M2S06] Ex 9 - Defina modelo conceitual
 
-Na implementação do método ‘validar’, atenda as seguintes situações:
+Defina modelagem conceitual de dados.
 
-a) Se o conteúdo de algum dos argumentos (valor ou tamanho) forem nulos, ou se o parâmetro de valor for um número negativo, o método deve lançar a exceção **IllegalArgumentException** (do pacote java.lang).
+### [M2S06] Ex 10 - Tipos de bancos de dados e SGBDs
 
-b) Se o tamanho do parâmetro “valorCampo” (nro de caracteres da String) for maior que o número constante no argumento ‘valorMaximoCampo’, o método deve lançar a exceção criada '**TamanhoInvalidoException**'.
-
-c) Caso não tenha estas inconsistências, o método não deve retornar nada.
+Quais são os tipos de bancos de dados e defina quais são os SGBDs.
 
 ---
 
@@ -94,5 +89,6 @@ Nos exercícios dessa semana foram utilizadas as seguintes tecnologias:
 <div style="display: inline_block">
     <img align="center" alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
     <img align="center" alt="Trello" src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white"/>
+    <img align="center" alt="Oracle" src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=black"/>
     <img align="center" alt="GitHub" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </div>
